@@ -138,43 +138,6 @@ switch(global.state){
 				global.state = global.state_wait_for_evaluate;
 				wait_timer = 40;
 			}
-
-			/*
-			//see if the player clicked the mouse button
-			if (mouse_check_button_pressed(mb_left)){
-				//see if the mouse is on top of a card
-				var card_clicked = instance_position(mouse_x, mouse_y, obj_card);
-				//if the mouse is colliding with a card
-				if (card_clicked != noone){
-					//if the card I clicked on in my_hand list
-					var in_hand = ds_list_find_index(global.my_hand, card_clicked); //will be -1 if not found
-					if (in_hand >= 0){	
-						//reference to the index i chose
-						my_chosen_index = in_hand;
-						//we clicked a card and it's in my_hand
-						card_clicked.target_x = 260;
-						card_clicked.target_y = 195;
-					}
-				} 
-			} else { //IF THE CARD WASNT CLICKED ; mouse check button
-				//check to see if player is over card
-				var card_clicked = instance_position(mouse_x, mouse_y, obj_card);
-				//there is collision with mouse and card
-				if (card_clicked != noone){
-					//then hover effect
-					var hover_card = instance_position(mouse_x, mouse_y, obj_card);
-					//shoudl this be == noone or != noone
-					if (hover_card != noone){ //if player is hovering over a card
-						if (hover_card.face_up == true){ //and if the card is face up
-							hover_card.target_y = 270; //then lerp up a bit
-						}
-					} 
-				} else {
-					global.state = global.state_wait_for_evaluate;
-					wait_timer = 40;
-				}
-			}
-			*/
 		
 			break;
 		
@@ -377,49 +340,7 @@ switch(global.state){
 		
 		break;
 }
-	/*case global.state_reshuffle:
-		//cards from discard pile move to original deck location
-		reshuffle_timer += 1;
-		if(reshuffle_timer == 5){
-			reshuffle_timer = 0;
-		}
-		//move discard cards into global.deck again
-		if(ds_list_size(global.discard_pile) > 0 and reshuffle_timer == 0){
-			var discarded_card = ds_list_find_value(global.discard_pile, 0);
-			ds_list_delete(global.discard_pile, 0);
-			
-			//add to deck list
-			ds_list_add(global.deck, discarded_card);
-			
-			
-			//moving sprite to deck location
-			
-			discarded_card.target_x = 40;
-			discarded_card.target_y = 150;
-			
-		}
-		//reposition the cards to match their post-shuffle position
-		for (i=0; i< ds_list_size(global.deck); i++){
-		var thiscard=global.deck[| i];
-		thiscard.target_y = 70 - 2*i;
-		thiscard.depth = -1000 - i;
-		}
-		
-		//only happens once per game
-		if(ds_list_size(global.discard_pile) == 0){
-			if(reshuffled == false){
-				ds_list_shuffle(global.deck);
-			}
-			reshuffled = true;
-			global.state = global.state_deal_cards;
-		}
-		
-	
-		//reshuffle animation
-		
-		//set diff y values to see all cards again
-		//random order in discard_pile
 
 
-		break;
-}
+//move the particle emitter to a small area around the player
+part_emitter_region(parts, emitter, obj_card.x - 50, obj_card.x + 50, obj_card.y - 50, obj_card.y + 50, ps_shape_line, ps_distr_linear);
