@@ -141,14 +141,15 @@ switch(global.state){
 		
 			break;
 		
+		
 	case global.state_wait_for_evaluate:
+		their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
 		if (wait_timer > 0){
 			//do nothing and wait
 			wait_timer -= 1;
 		}
 		if (wait_timer <= 0){
 			//flip opponent's card up
-			var their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
 			their_card.face_up = true;
 			
 			global.state = global.state_evaluate; 
@@ -210,6 +211,8 @@ switch(global.state){
 			break;
 		
 	case global.state_wait_after_evaluate:
+		var their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
+		var my_card = ds_list_find_value(global.my_hand, my_chosen_index);
 		//another wait_timer
 		if (wait_timer > 0){
 			//do nothing and wait
@@ -221,7 +224,7 @@ switch(global.state){
 			if (card_timer == 0){
 				//if their hand has 3 cards then remove opponent's chosen card from their_hand list to discard list
 				if(ds_list_size(global.their_hand) == 3){
-					var their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
+					
 					//this won't delete the card object from the game
 					//it just deletes it from the deck
 					ds_list_delete(global.their_hand, opponent_chosen_index);
@@ -236,7 +239,7 @@ switch(global.state){
 						their_card.depth = -1000-ds_list_size(global.discard_pile);
 					
 				} else if(ds_list_size(global.my_hand) == 3){ //if my hand has 3 cards then remove my chosen card from my_hand list to discard list
-					var my_card = ds_list_find_value(global.my_hand, my_chosen_index);
+					
 					//this won't delete the card object from the game
 					//it just deletes it from the deck
 					ds_list_delete(global.my_hand, my_chosen_index);

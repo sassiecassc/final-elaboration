@@ -32,7 +32,8 @@ before_they_select_timer = 20;
 wait_timer = 5;
 reshuffle_timer = 0;
 
-
+//their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
+//my_card = ds_list_find_value(global.my_hand, my_chosen_index);
 opponent_chosen_index = 0;
 my_chosen_index = 1;
 
