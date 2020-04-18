@@ -1,6 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
+//(on the dealer)
+//var this_card = global.deck[| ds_list_size(global.deck)];
+// this_card.show_trail = true;
+
+
+
 if(keyboard_check_pressed(vk_enter)){
 	room_restart();
 }
@@ -36,6 +43,12 @@ switch(global.state){
 					//move the sprite to the table
 					topcard.target_x = 120 + 70 * ds_list_size(global.their_hand); //90 pix from the left side of screen; 44 pixels apart
 					topcard.target_y = 30;
+					
+					
+					
+					var this_card = global.their_hand[| ds_list_size(global.their_hand)];
+					//particle effect card trail
+					this_card.show_trail = true;
 				}
 			} else if(ds_list_size(global.my_hand) < 3){
 				if (ds_list_size(global.deck) > 0) {
@@ -82,8 +95,11 @@ switch(global.state){
 			//moving chosen card to center to play
 			chosen_card.target_x = 260;
 			chosen_card.target_y = 115;
+
+
 			
 			before_they_select_timer = 20;
+			this_card.show_trail = false;
 			global.state = global.state_my_select;
 		}
 		break;
@@ -345,5 +361,3 @@ switch(global.state){
 }
 
 
-//move the particle emitter to a small area around the player
-part_emitter_region(parts, emitter, obj_card.x - 50, obj_card.x + 50, obj_card.y - 50, obj_card.y + 50, ps_shape_line, ps_distr_linear);
