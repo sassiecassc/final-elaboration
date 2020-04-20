@@ -44,11 +44,8 @@ switch(global.state){
 					topcard.target_x = 120 + 70 * ds_list_size(global.their_hand); //90 pix from the left side of screen; 44 pixels apart
 					topcard.target_y = 30;
 					
+					topcard.show_trail = true;
 					
-					
-					var this_card = global.their_hand[| ds_list_size(global.their_hand)];
-					//particle effect card trail
-					this_card.show_trail = true;
 				}
 			} else if(ds_list_size(global.my_hand) < 3){
 				if (ds_list_size(global.deck) > 0) {
@@ -99,7 +96,7 @@ switch(global.state){
 
 			
 			before_they_select_timer = 20;
-			this_card.show_trail = false;
+			//this_card.show_trail = false;
 			global.state = global.state_my_select;
 		}
 		break;
@@ -253,6 +250,7 @@ switch(global.state){
 						their_card.target_x = 510;
 						their_card.target_y = 150 - 2*ds_list_size(global.discard_pile);;
 						their_card.depth = -1000-ds_list_size(global.discard_pile);
+						their_card.show_trail = true;
 					
 				} else if(ds_list_size(global.my_hand) == 3){ //if my hand has 3 cards then remove my chosen card from my_hand list to discard list
 					
@@ -268,6 +266,8 @@ switch(global.state){
 					my_card.target_x = 510;
 					my_card.target_y = 150 - 2*ds_list_size(global.discard_pile);;
 					my_card.depth = -1000-ds_list_size(global.discard_pile);
+					my_card.show_trail = true;
+					
 					
 				} else if(ds_list_size(global.their_hand) > 0){ //move the rest of the opponent's cards to discard pile
 					var their_card = ds_list_find_value(global.their_hand, 0);
