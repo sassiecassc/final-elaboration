@@ -44,14 +44,14 @@ if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= targ
 
 
 //update the position of the emitter every frame to match this instance position
-part_emitter_region(parts, my_emitter, x - 30, x + 30, y - 40, y + 40, ps_shape_rectangle, ps_distr_invgaussian);
+part_emitter_region(hoverpartsyst, hover_emitter, x - 30, x + 30, y - 40, y + 40, ps_shape_rectangle, ps_distr_invgaussian);
 if (show_hover == true) {
 	//emit 1 per frame
 	//tell the new emitter to stream one particle every frame
-	part_emitter_stream(parts, my_emitter, hoverpart, -5); //negative number 1 in 5 chance that particle would spawn that frame
+	part_emitter_stream(hoverpartsyst, hover_emitter, hoverpart, -5); //negative number 1 in 5 chance that particle would spawn that frame
 } else {
 	//emit 0 per frame
-	part_emitter_stream(parts, my_emitter, hoverpart, 0);
+	part_emitter_stream(hoverpartsyst, hover_emitter, hoverpart, 0);
 }
 
 if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= target_y + 5){

@@ -25,6 +25,9 @@ part_type_sprite(cardtrail, spr_card_trail_particle, 0, 0, 0);
 part_type_size(cardtrail,0.1,0.2,0.01,0);
 
 
+hoverpartsyst = part_system_create();
+hover_emitter = part_emitter_create(hoverpartsyst);
+
 show_hover = false;
 
 hoverpart = part_type_create();

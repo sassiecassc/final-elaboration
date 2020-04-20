@@ -111,6 +111,22 @@
             }
         },
         {
+            "Key": "63e04edd-cdc5-4185-849d-561c2d6c38a1",
+            "Value": {
+                "id": "14747541-05e7-44d7-bb1d-973229d46878",
+                "resourcePath": "sprites\/spr_scissor_wins\/spr_scissor_wins.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
+            "Key": "662ec844-0afe-4391-b6e6-a103c4e47256",
+            "Value": {
+                "id": "c48677e7-4656-47f9-b4df-c1fc226603fc",
+                "resourcePath": "sprites\/spr_rock_wins\/spr_rock_wins.yy",
+                "resourceType": "GMSprite"
+            }
+        },
+        {
             "Key": "6e810aec-7377-40ef-b907-2bcdfb9ce6f6",
             "Value": {
                 "id": "8590f9d2-ddd0-4c03-a96f-a509bc05e92c",
@@ -156,6 +172,14 @@
                 "id": "3773be2c-daf2-48c4-8c4a-b4ff1661e48c",
                 "resourcePath": "views\/85d615c6-290c-4772-8e83-f5eda00788ab.yy",
                 "resourceType": "GMFolder"
+            }
+        },
+        {
+            "Key": "867af383-0f54-460b-ad4a-c4cd36de9ff1",
+            "Value": {
+                "id": "2d6a4d5e-eb15-4aff-b722-bd25064ebce0",
+                "resourcePath": "sprites\/spr_paper_wins\/spr_paper_wins.yy",
+                "resourceType": "GMSprite"
             }
         },
         {
