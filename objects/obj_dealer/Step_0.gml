@@ -42,9 +42,9 @@ switch(global.state){
 			
 					//move the sprite to the table
 					topcard.target_x = 120 + 70 * ds_list_size(global.their_hand); //90 pix from the left side of screen; 44 pixels apart
-					topcard.target_y = 30;
+					topcard.target_y = 60;
 					
-					topcard.show_trail = true;
+					//topcard.show_trail = true;
 					
 				}
 			} else if(ds_list_size(global.my_hand) < 3){
@@ -65,7 +65,7 @@ switch(global.state){
 				
 					//move the sprite to the table
 					topcard.target_x = 120 + 70 * ds_list_size(global.my_hand); //90 pix from the left side of screen; 44 pixels apart
-					topcard.target_y = 280;
+					topcard.target_y = 310;
 						
 					//flip my hand cards up
 					//ADD TIMER HERE SO IT DOESN'T FACE UP RIGHT AWAY
@@ -91,7 +91,7 @@ switch(global.state){
 			opponent_chosen_index = random_index;
 			//moving chosen card to center to play
 			chosen_card.target_x = 260;
-			chosen_card.target_y = 115;
+			chosen_card.target_y = 145;
 
 
 			
@@ -117,7 +117,7 @@ switch(global.state){
 		//check to see if the cards are at the normal y position
 		for (i=0; i<ds_list_size(global.my_hand); i++){
 			var thiscard = global.my_hand[| i];
-			thiscard.target_y = 280; 
+			thiscard.target_y = 310; 
 		}
 	
 		var mouse_over_card = instance_position(mouse_x, mouse_y, obj_card);
@@ -128,7 +128,8 @@ switch(global.state){
 			//shoudl this be == noone or != noone
 			if (hover_card != noone){ //if player is hovering over a card
 				if (hover_card.face_up == true){ //and if the card is face up
-					hover_card.target_y = 270; //then lerp up a bit
+					hover_card.target_y = 300; //then lerp up a bit
+					hover_card.show_hover = true;
 				}
 			} 
 		} // else here???
@@ -145,7 +146,9 @@ switch(global.state){
 						my_chosen_index = in_hand;
 						//we clicked a card and it's in my_hand
 						card_clicked.target_x = 260;
-						card_clicked.target_y = 195;
+						card_clicked.target_y = 225;
+						card_clicked.show_hover = false;
+						//card_clicked.show_trail = true;
 					}
 				} 
 				global.state = global.state_wait_for_evaluate;
@@ -248,9 +251,9 @@ switch(global.state){
 						//move the sprite to the table
 						audio_play_sound(snd_deal_cards, 1, 0);
 						their_card.target_x = 510;
-						their_card.target_y = 150 - 2*ds_list_size(global.discard_pile);;
+						their_card.target_y = 180 - 2*ds_list_size(global.discard_pile);;
 						their_card.depth = -1000-ds_list_size(global.discard_pile);
-						their_card.show_trail = true;
+						//their_card.show_trail = true;
 					
 				} else if(ds_list_size(global.my_hand) == 3){ //if my hand has 3 cards then remove my chosen card from my_hand list to discard list
 					
@@ -264,9 +267,9 @@ switch(global.state){
 					//move the sprite to the table
 					audio_play_sound(snd_deal_cards, 1, 0);
 					my_card.target_x = 510;
-					my_card.target_y = 150 - 2*ds_list_size(global.discard_pile);;
+					my_card.target_y = 180 - 2*ds_list_size(global.discard_pile);;
 					my_card.depth = -1000-ds_list_size(global.discard_pile);
-					my_card.show_trail = true;
+					//my_card.show_trail = true;
 					
 					
 				} else if(ds_list_size(global.their_hand) > 0){ //move the rest of the opponent's cards to discard pile
@@ -282,7 +285,7 @@ switch(global.state){
 					//move the sprite to the table
 					audio_play_sound(snd_deal_cards, 1, 0);
 					their_card.target_x = 510;
-					their_card.target_y = 150 - 2*ds_list_size(global.discard_pile);;
+					their_card.target_y = 180 - 2*ds_list_size(global.discard_pile);;
 					their_card.depth = -1000-ds_list_size(global.discard_pile);
 					their_card.face_up = true;
 				} else if(ds_list_size(global.my_hand) > 0){ //move the rest of the my cards to discard pile
@@ -298,7 +301,7 @@ switch(global.state){
 					//move the sprite to the table
 					audio_play_sound(snd_deal_cards, 1, 0);
 					my_card.target_x = 510;
-					my_card.target_y = 150 - 2*ds_list_size(global.discard_pile);
+					my_card.target_y = 180 - 2*ds_list_size(global.discard_pile);
 					my_card.depth = -1000-ds_list_size(global.discard_pile);
 				} else {
 					//ADD TIMER HERE
@@ -332,7 +335,7 @@ switch(global.state){
 			
 					//move the sprite to the deck, same as we did in Create() lerp right to left 
 					topcard.target_x = 40;
-					topcard.target_y = 150 - 2*ds_list_size(global.deck);
+					topcard.target_y = 180 - 2*ds_list_size(global.deck);
 					
 					//flip back face down
 					topcard.face_up = false;
@@ -346,10 +349,10 @@ switch(global.state){
 					//reposition the cards to match their post-shuffle position
 					for (i=0; i< ds_list_size(global.deck); i++){
 						
-						var thiscard=global.deck[| i];
+						var thiscard = global.deck[| i];
 						//have the cards move one by one
 
-						thiscard.target_y = 150 - 2*i;
+						thiscard.target_y = 180 - 2*i;
 						thiscard.depth = -1000 - i;
 					}
 					wait_timer = 5;

@@ -49,11 +49,11 @@ var scissor_counter = 0;
 //specify how many rounds to play? (4)
 for (i=0; i< global.num_cards; i++){
 	//create a new card and store it in a temporary variable
-	var newcard = instance_create_layer(40, 150,"Instances", obj_card);
+	var newcard = instance_create_layer(40, 180,"Instances", obj_card);
 	//set its properties
 	newcard.face_up = false;
 	newcard.target_x = 40;
-	newcard.target_y = 240 - 2*i;
+	newcard.target_y = 270 - 2*i;
 	newcard.depth = -1000 - i;
 	if (rock_counter < global.num_cards/3) {
 		newcard.card_type = global.rock;	
@@ -80,7 +80,7 @@ ds_list_shuffle(global.deck);
 //reposition the cards to match their post-shuffle position
 for (i=0; i< global.num_cards; i++){
 	var thiscard = global.deck[| i];
-	thiscard.target_y = 150 - 2*i;
+	thiscard.target_y = 180 - 2*i;
 	thiscard.depth = -1000 - i;
 }
 

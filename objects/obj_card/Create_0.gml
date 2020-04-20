@@ -19,18 +19,18 @@ parts = part_system_create();
 show_trail = false; //set up a variable
 my_emitter = part_emitter_create(parts);
 
-
 //make new particle type so we can give it particle properties
 cardtrail = part_type_create();
 part_type_sprite(cardtrail, spr_card_trail_particle, 0, 0, 0);
 part_type_size(cardtrail,0.1,0.2,0.01,0);
 
 
+show_hover = false;
 
-//part_type_create
-//
-//
-//
+hoverpart = part_type_create();
+part_type_shape(hoverpart, pt_shape_pixel);
+part_type_size(hoverpart, 1, 1.5, 0.01, 0.5);
+part_type_color1(hoverpart, c_black);
 
 
 
