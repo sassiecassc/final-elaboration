@@ -128,7 +128,16 @@ switch(global.state){
 			if (hover_card != noone){ //if player is hovering over a card
 				if (hover_card.face_up == true){ //and if the card is face up
 					hover_card.target_y = 300; //then lerp up a bit
-					hover_card.show_hover = true;
+					//hover particle should be the same card that was chosen
+					if(hover_card.card_type == global.rock){
+					hover_card.show_rock_hover = true;
+					}
+					if(hover_card.card_type == global.paper){
+						hover_card.show_paper_hover = true;
+					}
+					if(hover_card.card_type == global.scissor){
+						hover_card.show_scissor_hover = true;
+					}
 				}
 			} 
 		} // else here???
@@ -148,8 +157,6 @@ switch(global.state){
 						card_clicked.target_y = 225;
 						card_clicked.show_hover = false;
 						
-						
-						//trail should be the same card that was chosen - diff particles
 						card_clicked.show_trail = true;
 					}
 				} 
