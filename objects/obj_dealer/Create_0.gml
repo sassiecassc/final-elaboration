@@ -26,19 +26,21 @@ global.state_reshuffle = 5;
 global.state = global.state_deal_cards;
 
 //timer variables
-faceup_timer = 10;
 card_timer = 0;
 before_they_select_timer = 20;
 wait_timer = 5;
-reshuffle_timer = 0;
+eval_timer = 150;
 
 //their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
 //my_card = ds_list_find_value(global.my_hand, my_chosen_index);
 opponent_chosen_index = 0;
 my_chosen_index = 1;
 
-reshuffled = false;
-
+increased_my_score = false;
+//if(global.their_score ++){
+if(audio_is_playing(snd_lose)){
+	increased_my_score = false;
+}
 
 
 //create a number of cards and add them to the global 'deck' list

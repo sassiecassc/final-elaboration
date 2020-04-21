@@ -155,9 +155,6 @@ switch(global.state){
 						//we clicked a card and it's in my_hand
 						card_clicked.target_x = 260;
 						card_clicked.target_y = 225;
-						card_clicked.show_hover = false;
-						
-						card_clicked.show_trail = true;
 					}
 				} 
 				global.state = global.state_wait_for_evaluate;
@@ -191,12 +188,15 @@ switch(global.state){
 					if(my_card.card_type == global.paper){
 						audio_play_sound(snd_win, 1, 0);
 						global.my_score += 1;
+						//my_card.show_playerwins = true;
+						increased_my_score = true;
 					}
 			
 				//if i chose scissors
 					if(my_card.card_type == global.scissor){
 						audio_play_sound(snd_lose, 1, 0);
 						global.their_score += 1;
+						increased_my_score = false;
 					}
 			}
 			//if other player paper
@@ -205,6 +205,7 @@ switch(global.state){
 				if(my_card.card_type == global.rock){
 					audio_play_sound(snd_lose, 1, 0);
 					global.their_score += 1;
+					increased_my_score = false;
 					}
 		
 
@@ -212,6 +213,8 @@ switch(global.state){
 				if(my_card.card_type == global.scissor){
 					audio_play_sound(snd_win, 1, 0);
 					global.my_score += 1;
+					//my_card.show_playerwins = true;
+					increased_my_score = true;
 				}
 		
 			}
@@ -221,17 +224,21 @@ switch(global.state){
 				if(my_card.card_type == global.rock){
 					audio_play_sound(snd_win, 1, 0);
 					global.my_score += 1;
+					//my_card.show_playerwins = true;
+					increased_my_score = true;
 					}
 			
 				//if i chose paper
 				if(my_card.card_type == global.paper){
 					audio_play_sound(snd_lose, 1, 0);
 					global.their_score += 1;
+					increased_my_score = false;
 				}
 			}
 			
 				global.state = global.state_wait_after_evaluate;
-				wait_timer = 40;
+				eval_timer = 150;
+				
 			
 			break;
 		
@@ -239,11 +246,14 @@ switch(global.state){
 		var their_card = ds_list_find_value(global.their_hand, opponent_chosen_index);
 		var my_card = ds_list_find_value(global.my_hand, my_chosen_index);
 		//another wait_timer
-		if (wait_timer > 0){
+		if (eval_timer > 0){
 			//do nothing and wait
-			wait_timer -= 1;
+			eval_timer -= 1;
+			if(increased_my_score == true){
+				my_card.show_playerwins = true;
+			}
 		}
-		if (wait_timer <= 0){
+		if (eval_timer <= 0){
 			//move all cards to discard pile
 			//opponent's chosen card, my chosen card, opponent's hand, my hand
 			if (card_timer == 0){
@@ -312,10 +322,14 @@ switch(global.state){
 					my_card.depth = -1000-ds_list_size(global.discard_pile);
 				} else {
 					//ADD TIMER HERE
-					if(ds_list_size(global.deck) > 0){
-						global.state = global.state_deal_cards;
-					} else {
+					//if there are no more cards in the deck
+					if(ds_list_size(global.deck) == 0){
+						//then move to the reshuffle state
 						global.state = global.state_reshuffle;
+					} else {
+						//if there are cards in the global deck then go back to dealing cards
+						global.state = global.state_deal_cards;
+						eval_timer = 150;
 					}
 				}
 			}

@@ -33,7 +33,7 @@ show_rock_hover = false;
 rockhoverpart = part_type_create();
 part_type_sprite(rockhoverpart, spr_rock_wins, 0, 0, 0);
 part_type_size(rockhoverpart, 1, 1.5, 0, 0);
-part_type_speed(rockhoverpart, 1, 3, 0, 0);
+///part_type_speed(rockhoverpart, 1, 3, 0, 0);
 part_type_direction(rockhoverpart, 270, 270, 0, 0); //move only down
 part_type_gravity(rockhoverpart, 0.20, 270);
 
@@ -60,8 +60,19 @@ show_scissor_hover = false;
 scissorhoverpart = part_type_create();
 part_type_sprite(scissorhoverpart, spr_scissor_wins, 0, 0, 0);
 part_type_size(scissorhoverpart, 0.7, 1, 0, 0);
-part_type_speed(scissorhoverpart, 1, 1.5, 0, 0);
+part_type_speed(scissorhoverpart, 2, 2.5, 0, 0);
 part_type_direction(scissorhoverpart, 90, 90, 0, 0); // move left and right
 
 
+playerwins = part_system_create();
 
+playerwins_emitter = part_emitter_create(playerwins);
+
+show_playerwins = false;
+
+playerwinspart = part_type_create();
+part_type_shape(playerwinspart, pt_shape_star);
+part_type_size(playerwinspart, 0.1, 0.5, 0.01, 0);
+part_type_color1(playerwinspart, c_yellow);
+
+eval_timer = 200;

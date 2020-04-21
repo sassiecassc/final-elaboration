@@ -38,7 +38,6 @@ if (show_trail == true) {
 }
 
 if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= target_y + 5){
-	show_debug_message("reached target");
 	show_trail = false;
 }
 
@@ -81,7 +80,7 @@ part_emitter_region(scissorhover, scissor_hover_emitter, x - 35, x + 35, y - 45,
 if (show_scissor_hover == true) {
 	//emit 1 per frame
 	//tell the new emitter to stream one particle every frame
-	part_emitter_stream(scissorhover, scissor_hover_emitter, scissorhoverpart, -30); //negative number 1 in 5 chance that particle would spawn that frame
+	part_emitter_stream(scissorhover, scissor_hover_emitter, scissorhoverpart, -15); //negative number 1 in 5 chance that particle would spawn that frame
 	
 } else {
 	//emit 0 per frame
@@ -92,5 +91,20 @@ if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= targ
 	show_scissor_hover = false;
 }
 
+//update the position of the player wins emitter every frame to match this instance position
+part_emitter_region(playerwins, playerwins_emitter, x - 40, x + 40, y - 50, y + 50, ps_shape_rectangle, ps_distr_invgaussian);
+if (show_playerwins == true) {
+	//emit 1 per frame
+	//tell the new emitter to stream one particle every frame
+	part_emitter_stream(playerwins, playerwins_emitter, playerwinspart, -10); //negative number 1 in 5 chance that particle would spawn that frame
+	
+} else {
+	//emit 0 per frame
+	part_emitter_stream(playerwins, playerwins_emitter, playerwinspart, 0);
+}
 
+//setting condition
+if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= target_y + 5){
+	show_playerwins = false;
+}
 
