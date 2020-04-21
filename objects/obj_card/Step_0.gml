@@ -106,5 +106,11 @@ if (show_playerwins == true) {
 //setting condition
 if(x >= target_x  - 5  and x <= target_x + 5 and y >= target_y - 5 and y <= target_y + 5){
 	show_playerwins = false;
+
 }
+
+
+
+
+
 
